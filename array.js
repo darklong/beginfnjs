@@ -37,7 +37,15 @@ const reduce = (array,fn,initialValue) => {
 			accumlator = fn(accumlator,value);
 	return [accumlator];
 }
-export { concatAll, forEach, map, filter, reduce};
+
+const zip = (leftArr,rightArr,fn) => {
+let index, results = [];
+for(index = 0;index < Math.min(leftArr.length, rightArr.
+length);index++)
+results.push(fn(leftArr[index],rightArr[index]));
+return results;
+}
+export { concatAll, forEach, map, filter, reduce,zip };
 //console.log(reduce(useless,(acc,value)=>acc*value,1))
 // console.log(map(apressBooks,(book) => {
 // return book.bookDetails

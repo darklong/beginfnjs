@@ -1,4 +1,4 @@
-import {concatAll,forEach,map,filter,reduce} from './array.js'
+import {concatAll,forEach,map,filter,reduce,zip} from './array.js'
 var useless = [2,5,6,1,10];
 let apressBooks = [
 {
@@ -40,6 +40,24 @@ let apressBooks = [
 	]
 }
 ];
+let reviewDetails = [
+{
+"id": 111,
+"reviews": [{good : 4 , excellent : 12}]
+},
+{
+"id" : 222,
+"reviews" : []
+},
+{
+"id" : 333,
+"reviews" : []
+},
+{
+"id" : 444,
+"reviews": [{good : 14 , excellent : 12}]
+}
+]
 // let bookDetails = map(apressBooks,(book) => {return book.bookDetails})
 // console.log(bookDetails)
 // console.log(filter(bookDetails,(el)=>{
@@ -49,10 +67,10 @@ let apressBooks = [
 	
 // 			filter(concatAll(map(apressBooks,(book) => {return book.bookDetails})),(el)=>{
 // 				return el.id > 111})				
-)
+// )
 
-console.log(concatAll(map(apressBooks,(book) => {return book.bookDetails})))
-console.log(map(apressBooks,(book) => {return book.bookDetails}))
+// console.log(concatAll(map(apressBooks,(book) => {return book.bookDetails})))
+// console.log(map(apressBooks,(book) => {return book.bookDetails}))
 // let bookDetails = concatAll(map(apressBooks,(book) => {return book.bookDetails}))
 
 // console.log(
@@ -75,3 +93,21 @@ console.log(map(apressBooks,(book) => {return book.bookDetails}))
 // 	}
 // }
 // console.log(query)
+// console.log(
+// zip([1,2,3],[4,5,6],(x,y)=>x+y)
+// )
+let bookDetails = concatAll(
+	map(apressBooks,(book) => {
+	return book.bookDetails
+	})
+)
+//zip the results
+let mergedBookDetails = zip(bookDetails,reviewDetails,(book,review) => {
+if(book.id === review.id)
+{
+let clone = Object.assign({},book)
+clone.ratings = review
+return clone
+}
+})
+console.log(mergedBookDetails)
