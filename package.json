@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "test": "ok",
-    "playmain" : "npx babel-node main.js --presets es2015-node5"
+    "playmain": "npx babel-node main.js --presets es2015-node5"
   },
   "author": "DangLong",
   "license": "ISC",
